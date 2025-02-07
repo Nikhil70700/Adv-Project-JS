@@ -1,4 +1,5 @@
 import { getCartProductFromLS } from "./getCartProducts";
+import { updateCartValue } from "./updateCartValue";
 
 export const addToCart=(event,id,stock)=>{
 
@@ -13,6 +14,9 @@ let arrLocalStorageProduct=getCartProductFromLS();
     // console.log(quantity,price);
 
     price=price.replace ("₹","");
+
+
+    
     price=Number(price*quantity);
     quantity=Number(quantity);
 
@@ -25,6 +29,8 @@ let arrLocalStorageProduct=getCartProductFromLS();
     localStorage.setItem('cartProductLS',JSON.stringify(arrLocalStorageProduct));
 
 
-    console.log(quantity,price);
+
+    //Update Cart Button Value
+    updateCartValue(arrLocalStorageProduct);
     
 }

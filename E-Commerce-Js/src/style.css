@@ -124,6 +124,26 @@ a {
   padding: 9.6rem 2.4rem;
 }
 
+header.section-navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: white;
+  box-shadow: 0 4px 6px #a068d1ad;
+  z-index: 1000;
+  margin: 0 auto;
+  padding: 0 32px;
+  min-width: 320px;
+  border-radius: 0 0 8% 8% / 0 0 100% 100%;
+
+}
+
+body {
+  padding-top: 80px; /* Adjust based on navbar height */
+}
+
+
+
 
 
 :is(
@@ -269,7 +289,7 @@ textarea:focus-visible {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1.8rem; /* we override the main container padding property  */
+  padding: 0.5rem; /* we override the main container padding property  */
 }
 
 .section-navbar img {
@@ -1291,4 +1311,3 @@ footer {
     padding: 6.4rem 0rem 2.4rem 0rem;
   }
 }
-/***** End  media queries Section *****/
