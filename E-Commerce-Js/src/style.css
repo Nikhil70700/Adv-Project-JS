@@ -52,6 +52,7 @@ h6 {
 h1 {
   font-size: 3.2rem;
 }
+
 h2 {
   font-size: 3.2rem;
 }
@@ -71,7 +72,7 @@ li {
   list-style: none;
 }
 
-.sign_in_up a{
+.sign_in_up a {
   color: #b3143c;
   background-color: white;
   text-decoration: none;
@@ -84,14 +85,17 @@ li {
   -ms-border-radius: 5px;
   -o-border-radius: 5px;
   font-weight: 500;
-&:hover{
-  background-color: #646cff;
-  color: white;
+
+  &:hover {
+    background-color: #646cff;
+    color: white;
+  }
 }
-}
+
 a {
   color: #646cff;
   text-decoration: none;
+
   &:hover {
     color: #535bf2;
   }
@@ -110,16 +114,13 @@ a {
   padding: 9.6rem 2.4rem;
 }
 
-:is(
-    .section-extra-product,
-    .section-blog,
-    .section-policy,
-    .section-contact--homepage,
-    .section-why--choose,
-    .section-contact,
-    footer
-  )
-  .container:first-child {
+:is(.section-extra-product,
+  .section-blog,
+  .section-policy,
+  .section-contact--homepage,
+  .section-why--choose,
+  .section-contact,
+  footer) .container:first-child {
   padding: 6.4rem 0 2.4rem 0;
 }
 
@@ -184,49 +185,66 @@ textarea:focus-visible {
 /** CSS for toast notifications */
 .toast {
   position: fixed;
-  top: 2rem;
+  top: 10rem;
   right: 1.4rem;
-  background-color: var(--buttonColor);
-  color: #fff;
-  padding: 10px 20px;
-  border-radius: 5px;
-  border-bottom: 0;
-  border-color: red;
+  background: linear-gradient(45deg, #768fe2, #ff4b2b, #768fe2);
+  color: white;
+  padding: 12px 24px;
+  border-radius: 8px;
   font-size: 1.6rem;
+  font-family: "Urbanist", sans-serif;
   z-index: 1000;
-  font-family: "urbanist";
-  animation: toastAnimation 2s linear;
-  -webkit-animation: toastAnimation 2s linear;
-  box-shadow: inset 0px 0px 0.5em 0px var(--glow-color),
-    0px 0px 0.5em 0px var(--glow-color);
+  box-shadow: 0px 0px 15px rgba(255, 71, 133, 0.8);
+  animation: toastGlow 0.5s ease-out, toastBounce 0.3s ease-in-out 0.5s, toastFadeOut 0.7s ease-in 3.5s forwards;
 }
 
-@keyframes toastAnimation {
+@keyframes toastGlow {
   0% {
-    transform: translateX(100%);
+    transform: translateX(100%) scale(0.8);
     opacity: 0;
-    -webkit-transform: translateX(100%);
-    -moz-transform: translateX(100%);
-    -ms-transform: translateX(100%);
-    -o-transform: translateX(100%);
+    box-shadow: 0px 0px 0px rgba(255, 71, 133, 0);
   }
-  20% {
-    transform: translateX(0);
-    opacity: 1;
-    -webkit-transform: translateX(0);
-    -moz-transform: translateX(0);
-    -ms-transform: translateX(0);
-    -o-transform: translateX(0);
-  }
+
   100% {
-    transform: translateX(0);
+    transform: translateX(0) scale(1);
     opacity: 1;
-    -webkit-transform: translateX(0);
-    -moz-transform: translateX(0);
-    -ms-transform: translateX(0);
-    -o-transform: translateX(0);
+    box-shadow: 0px 0px 15px rgba(255, 71, 133, 0.8);
   }
 }
+
+@keyframes toastBounce {
+  0% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
+
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes toastFadeOut {
+  0% {
+    transform: translateX(0) scale(1);
+    opacity: 1;
+    box-shadow: 0px 0px 15px rgba(255, 71, 133, 0.8);
+  }
+
+  50% {
+    transform: translateX(-10px) scale(0.95);
+    opacity: 0.6;
+  }
+
+  100% {
+    transform: translateX(100%) scale(0.8);
+    opacity: 0;
+    box-shadow: 0px 0px 0px rgba(255, 71, 133, 0);
+  }
+}
+
 
 /***** Navbar Section *****/
 
@@ -241,21 +259,56 @@ textarea:focus-visible {
   & .sing_in_up {
     display: flex;
     gap: 3.2rem;
-    
+
   }
 }
 
 .section-navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
   width: 100%;
-  box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px,
-    rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+  background: #fff;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  border-radius: 0px 5px 50px 50px;
+  -webkit-border-radius: 0px 5px 50px 50px;
+  -moz-border-radius: 0px 5px 50px 50px;
+  -ms-border-radius: 0px 5px 50px 50px;
+  -o-border-radius: 0px 5px 50px 50px;
 }
+
+.main-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+}
+
+.navbar ul {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+}
+
+.navbar a {
+  text-decoration: none;
+  color: #333;
+  font-weight: bold;
+}
+
+body {
+  padding-top: 80px;
+  /* Adjust this to prevent content from hiding behind the fixed navbar */
+}
+
 
 .section-navbar .container {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1.8rem; /* we override the main container padding property  */
+  padding: 1.8rem;
+  /* we override the main container padding property  */
 }
 
 .section-navbar img {
@@ -286,6 +339,7 @@ textarea:focus-visible {
       transition: all 0.3s linear;
     }
   }
+
   & li a:hover {
     color: var(--main-color);
   }
@@ -304,14 +358,12 @@ main {
   position: relative;
   background-color: #d9e9ff;
 
-  background-image: linear-gradient(
-    to top right,
-    #3d86fa,
-    #4484fb,
-    #679eff,
-    #b3d2ff,
-    #ebf3fe
-  );
+  background-image: linear-gradient(to top right,
+      #3d86fa,
+      #4484fb,
+      #679eff,
+      #b3d2ff,
+      #ebf3fe);
 }
 
 .custom-shape-divider-bottom-1696038172 {
@@ -587,15 +639,19 @@ main .section-hero {
   0% {
     background-color: #b3d0ff;
   }
+
   25% {
     background-color: #80b1ff;
   }
+
   50% {
     background-color: #4d91ff;
   }
+
   75% {
     background-color: #99c0ff;
   }
+
   100% {
     background-color: #3381ff;
   }
@@ -770,20 +826,21 @@ footer {
   display: flex;
   flex-wrap: wrap;
   align-items: flex-start;
-  gap: 2.5rem;
+  gap: 2rem;
   width: 36rem;
   padding: 1.6rem;
-  /* max-width: 1000px; */
-  margin: 1.8vh auto;
-  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
-  border-radius: 0.3rem;
+  /*max-width: 1000px;
+  */
+  border-radius: 50px;
+  background: #e0e0e0;
+  box-shadow: rgba(0, 0, 0, 0.17) 0px -23px 25px 0px inset, rgba(0, 0, 0, 0.15) 0px -36px 30px 0px inset, rgba(0, 0, 0, 0.1) 0px -79px 40px 0px inset, rgba(0, 0, 0, 0.06) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
   /*border: 0.1rem solid #ccc;
   */
   -webkit-border-radius: 0.2rem;
-  -moz-border-radius: 0.3rem;
-  -ms-border-radius: 0.3rem;
-  -o-border-radius: 0.3rem;
-  -webkit-border-radius: 0.3rem;
+  -moz-border-radius: 5rem;
+  -ms-border-radius: 5rem;
+  -o-border-radius: 5rem;
+  -webkit-border-radius: 5rem;
 }
 
 .category {
@@ -801,7 +858,7 @@ footer {
 .productImage {
   max-width: 100%;
   width: 32rem;
-  height: auto;
+  height: 30rem;
 }
 
 .productPriceElement,
@@ -867,6 +924,7 @@ footer {
     font-weight: bold;
   }
 }
+
 /**** Our Home product section Ends  ****/
 
 #cartValue {
@@ -881,20 +939,26 @@ footer {
 .hero-btn a {
   font-weight: 500;
   font: inherit;
-  border-radius: 6px;
-  border: 0;
   padding: 1rem 2.8rem;
-  background-color: var(--buttonColor);
-  color: #fff;
   font-size: 1.6rem;
-  /* margin-top: 1.2rem; */
+  border-radius: 10px;
+  background: #333;
+  justify-content: center;
+  align-items: center;
+  font-family: "Damion", cursive;
+  cursor: pointer;
+  border: none;
+  color: #d6d6d6;
+  transition: 500ms;
+
+
+
 
   &:hover {
-    box-shadow: inset 0px 1px 4px rgba(0, 0, 0, 0.16),
-      inset 0px 0px 0px 3px rgb(51, 51, 51);
-    background-color: var(--backgroundColor);
-    color: var(--buttonColor);
-    cursor: pointer;
+    box-shadow: -5px -5px 15px #444, 5px 5px 15px #222, inset 5px 5px 10px #222,
+      inset -5px -5px 10px #444;
+    color: #d6d6d6;
+    transition: 500ms;
   }
 
   .fa-cart-shopping {
@@ -917,6 +981,7 @@ footer {
     border-right: 0.1rem solid #d8d8d8;
     border-left: 0.1rem solid #d8d8d8;
     border-radius: 0;
+
     &:last-child {
       border-bottom: 0.1rem solid #d8d8d8;
     }
@@ -926,7 +991,8 @@ footer {
     width: 100%;
     display: grid;
     grid-template-columns: 0.5fr 0.5fr 1fr 0.5fr 1fr 1fr;
-    align-items: center; /* margin: auto; */
+    align-items: center;
+    /* margin: auto; */
     gap: 3.2rem;
   }
 
@@ -1015,7 +1081,7 @@ footer {
 
 /* https://getbootstrap.com/docs/5.0/layout/breakpoints/ */
 
-@media (width <= 1380px) {
+@media (width <=1380px) {
   html {
     font-size: 56.25%;
   }
@@ -1025,19 +1091,16 @@ footer {
   }
 }
 
-@media (width <= 1220px) {
+@media (width <=1220px) {
   html {
     font-size: 54%;
   }
 
-  :is(
-      .section-about,
-      .section-blog,
-      .section-course,
-      .section-contact--homepage,
-      .section-why--choose
-    )
-    .grid {
+  :is(.section-about,
+    .section-blog,
+    .section-course,
+    .section-contact--homepage,
+    .section-why--choose) .grid {
     gap: 6.4rem;
   }
 
@@ -1047,7 +1110,7 @@ footer {
   }
 }
 
-@media (width <= 1100px) {
+@media (width <=1100px) {
   .grid-four--cols {
     grid-template-columns: repeat(auto-fill, minmax(25rem, 1fr));
   }
@@ -1063,6 +1126,7 @@ footer {
     & .choose-left-div {
       order: 2;
     }
+
     & .choose-center-div {
       order: 1;
 
@@ -1080,6 +1144,7 @@ footer {
         display: none;
       }
     }
+
     & .choose-right-div {
       order: 3;
     }
@@ -1095,7 +1160,7 @@ footer {
   }
 }
 
-@media (width <= 980px) {
+@media (width <=980px) {
   body {
     padding: 0 0.6rem;
   }
@@ -1141,6 +1206,7 @@ footer {
   .section-hero .section-hero-image {
     display: grid;
     place-items: center;
+
     & figure {
       display: grid;
       place-items: center;
@@ -1157,7 +1223,7 @@ footer {
   }
 }
 
-@media (width <= 768px) {
+@media (width <=768px) {
   .grid-two--cols {
     grid-template-columns: 1fr;
   }

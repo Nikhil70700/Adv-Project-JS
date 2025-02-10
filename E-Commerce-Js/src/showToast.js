@@ -14,4 +14,8 @@ export function showToast(operation,id){
 
 
     //Automatically remove the toast after a second
+
+    setTimeout(()=>{
+        toast.remove();
+    },2000);
 }
