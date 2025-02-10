@@ -33,7 +33,7 @@ html {
 
 /* have a look into body once after we done with rest of the styling  */
 body {
-  margin: 0 auto;
+  margin: 0px auto;
   padding: 0 32px;
   min-width: 320px;
   background-color: var(--backgroundColor);
@@ -171,7 +171,7 @@ a {
 /* states  */
 
 .btn:hover {
-  background-color: var(--bnt-hover-bg-color);
+  background-color: #333;
   box-shadow: var(--btn-box-shadow);
   cursor: pointer;
 }
@@ -272,10 +272,6 @@ textarea:focus-visible {
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   z-index: 1000;
   border-radius: 0px 5px 50px 50px;
-  -webkit-border-radius: 0px 5px 50px 50px;
-  -moz-border-radius: 0px 5px 50px 50px;
-  -ms-border-radius: 0px 5px 50px 50px;
-  -o-border-radius: 0px 5px 50px 50px;
 }
 
 .main-nav {
@@ -290,7 +286,6 @@ textarea:focus-visible {
   display: flex;
   gap: 20px;
 }
-
 .navbar a {
   text-decoration: none;
   color: #333;
@@ -354,21 +349,19 @@ body {
 /***** Hero Section *****/
 
 main {
-  height: 84vh;
+  height: 95vh;
   position: relative;
   background-color: #d9e9ff;
 
-  background-image: linear-gradient(to top right,
-      #3d86fa,
-      #4484fb,
-      #679eff,
-      #b3d2ff,
-      #ebf3fe);
+  background-image: linear-gradient(to top right, #a1c4fd, #c2e9fb, #e0c3fc);
+
+
+
 }
 
 .custom-shape-divider-bottom-1696038172 {
   position: absolute;
-  bottom: 0;
+  bottom: -10px;
   left: 0;
   width: 100%;
   overflow: hidden;
@@ -388,7 +381,7 @@ main {
 }
 
 main .section-hero {
-  height: 90vh;
+  height: 95vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -398,6 +391,7 @@ main .section-hero {
 .section-hero .grid {
   align-items: center;
   gap: 6.4rem;
+  
 }
 
 .section-hero {
@@ -406,22 +400,23 @@ main .section-hero {
     letter-spacing: 0.2rem;
     font-size: 1.7rem;
     word-spacing: 0.2rem;
-    color: #003b99;
+    color: #94080d;
     font-weight: 700;
   }
 
   & .hero-heading {
     font-size: 5.8rem;
+    font-weight: 900;
     line-height: 1.5;
-    initial-letter: -0.2rem;
+    /* initial-letter: -0.2rem; */
     text-transform: capitalize;
-    color: #003b99;
+    color: #9ddf0d;
     font-family: "Jost";
   }
 
   & .hero-para {
     margin: 2rem 0 4.2rem 0;
-    color: white;
+    color: #621dd2;
   }
 }
 
@@ -435,11 +430,12 @@ main .section-hero {
 
 /***** Extra Section *****/
 .div-extra {
-  padding: 3.2rem 2.4rem;
-  background-color: var(--backgroundSecondary);
+  padding: 3.2rem 5.4rem;
+  /* background-color: var(--backgroundSecondary); */
   position: relative;
-  /* box-shadow: inset 0 0 0 4rem #000; */
-  /* border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; */
+  box-shadow: rgba(0, 0, 0, 0.35) 0px -50px 36px -28px inset;
+  border: 1px solid #80808062;
+  margin: 0rem 1rem;
 
   &::after {
     content: "";
@@ -574,7 +570,7 @@ main .section-hero {
 .section-why--choose .text-align--right .why-choose--div {
   display: flex;
   flex-direction: column;
-  align-items: end;
+  align-items: start;
 }
 
 .section-why--choose .text-align--left .why-choose--div {
@@ -858,9 +854,13 @@ footer {
 .productImage {
   max-width: 100%;
   width: 32rem;
-  height: 30rem;
+  height: 35rem;
 }
-
+.cartImage .productImage{
+  max-width: 100%;
+  width: 32rem;
+  height: 10rem;
+ }
 .productPriceElement,
 .productQuantityElement,
 .productStockElement {
@@ -955,7 +955,7 @@ footer {
 
 
   &:hover {
-    box-shadow: -5px -5px 15px #444, 5px 5px 15px #222, inset 5px 5px 10px #222,
+    box-shadow: -5px -5px 15px #1d1d1d, 5px 5px 15px #222, inset 5px 5px 10px #222,
       inset -5px -5px 10px #444;
     color: #d6d6d6;
     transition: 500ms;
@@ -1224,6 +1224,50 @@ footer {
 }
 
 @media (width <=768px) {
+
+  .section-navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: #fff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    padding: 1rem 0;
+  }
+  
+  .main-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1420px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+  
+  .navbar ul {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+  }
+  
+  /* Mobile Menu */
+  @media (max-width: 768px) {
+    .navbar ul {
+      display: none; /* Hide desktop menu on mobile */
+    }
+  
+    .navbar.active ul {
+      display: flex;
+      flex-direction: column;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      width: 100%;
+      background: #fff;
+      padding: 2rem;
+    }
+  }
   .grid-two--cols {
     grid-template-columns: 1fr;
   }
