@@ -22,8 +22,8 @@
           <p>Free Shipping, <span><i class="bi bi-truck"></i></span>, 30-days return or refund guarantee</p>
         </div>
         <div class="sign_in_up">
-          <a href="./src/signIn.html" class="btn btn-outline-primary btn-sm">SIGN-IN</a>
-          <a href="./src/singUp.html" class="btn btn-primary btn-sm">SIGN-UP</a>
+          <a href="./signIn.html" class="btn btn-outline-primary btn-sm">SIGN-IN</a>
+          <a href="./singUp.html" class="btn btn-primary btn-sm">SIGN-UP</a>
         </div>
       </div>
     </section>  
@@ -39,19 +39,16 @@
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav ms-auto">
             <li class="nav-item">
-              <a href="/" class="nav-link">Home</a>
+              <a href="../index.html" class="nav-link">Home</a>
             </li>
             <li class="nav-item">
-              <a href="./src/about.html" class="nav-link">ABOUT</a>
+              <a href="./products.html" class="nav-link">PRODUCTS</a>
             </li>
             <li class="nav-item">
-              <a href="./src/products.html" class="nav-link">PRODUCTS</a>
+              <a href="./contact.html" class="nav-link">CONTACT</a>
             </li>
             <li class="nav-item">
-              <a href="./src/contact.html" class="nav-link">CONTACT</a>
-            </li>
-            <li class="nav-item">
-              <a href="./src/addToCart.html" class="nav-link add-to-cart-button" id="cartValue">
+              <a href="./addToCart.html" class="nav-link add-to-cart-button" id="cartValue">
                 <i class="fa-solid fa-cart-shopping"></i> 0
               </a>
             </li>
@@ -187,67 +184,6 @@
   </section>
   <!-- ========== End policy ========== -->
 
-  <!-- ========== Start Our Products Section ========== -->
-
-  <section class="section-products container">
-    <div class="">
-      <h2 class="section-common--heading">Checkout Our Store</h2>
-    </div>
-
-    <section class="container">
-      <div id="productContainer"></div>
-    </section>
-  </section>
-
-  <!-- ========== Start Product Template Section ========== -->
-
-  <template id="productTemplate">
-    <div class="cards" id="cardValue">
-      <article class="information [card]">
-        <span class="category"></span>
-        <div class="imageContainer">
-          <img class="productImage" src="" alt="" />
-        </div>
-        <h2 class="productName"></h2>
-        <h3 class="productBrand"></h3>
-
-        <div class="productRating">
-          <i class="fa-solid fa-star"></i>
-          <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
-          <i class="fa-solid fa-star"></i>
-          <i class="fa-solid fa-star"></i>
-        </div>
-
-        <p class="productDescription"></p>
-
-        <div class="productPriceElement">
-          <p class="productPrice"></p>
-          <p class="productActualPrice"></p>
-        </div>
-
-        <div class="productStockElement">
-          <p class="productProperty">Total Stocks Available:</p>
-          <p class="productStock"></p>
-        </div>
-
-        <div class="productQuantityElement">
-          <p class="productProperty">Quantity(Pieces)</p>
-          <div class="stockElement">
-            <button class="cartIncrement">+</button>
-            <p class="productQuantity">1</p>
-            <button class="cartDecrement">-</button>
-          </div>
-        </div>
-
-        <button class="add-to-cart-button">
-          <i class="fa-solid fa-cart-shopping"></i> Add To Cart
-        </button>
-      </article>
-    </div>
-  </template>
-
-  <!-- ========== End Product Template Section ========== -->
-
 
 
   <!-- ========== Start Why Choose Us Section ========== -->
@@ -378,7 +314,7 @@
 
   <!-- ========== End footer Section ========== -->
 
-  <script type="module" src="./src/main.js"></script>
+  <script type="module" src="main.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
     crossorigin="anonymous"></script>
