@@ -1,68 +1,50 @@
-import { getCartProductFromLS } from "./getCartProducts";
-import { showToast } from "./showToast";
-import { updateCartValue } from "./updateCartValue";
+import { getCartProductFromLS } from "./getCartProducts.js";
+import { showToast } from "./showToast.js";
+import { updateCartValue } from "./updateCartValue.js";
 
-
-
+// Load cart data on page load
 getCartProductFromLS();
+
+// Function to add a product to cart
 export const addToCart = (event, id, stock) => {
+  let arrLocalStorageProduct = getCartProductFromLS();
 
+  const currentProdElem = document.querySelector(`#card${id}`);
+  let quantity = currentProdElem.querySelector(".productQuantity").innerText;
+  let price = currentProdElem.querySelector(".productPrice").innerText;
+  
 
-    let arrLocalStorageProduct = getCartProductFromLS();
+  price = price.replace("₹", ""); // Remove currency symbol
 
+  let existingProd = arrLocalStorageProduct.find((curProd) => curProd.id === id);
 
-    const currentProductElem = document.querySelector(`#card${id}`);
-    let quantity = currentProductElem.querySelector('.productQuantity').innerText;
-    let price = currentProductElem.querySelector('.productPrice').innerText;
+  if (existingProd) {
+    // If product already exists, update its quantity
+    existingProd.quantity = Number(existingProd.quantity) + Number(quantity);
+    existingProd.price = Number(price) * existingProd.quantity;
 
-    // console.log(quantity,price);
+    // Update the localStorage
+    localStorage.setItem("cartProductLS", JSON.stringify(arrLocalStorageProduct));
 
-    price = price.replace("₹", "");
+    // Show toast notification
+    showToast("add", id);
 
-
-    let existingProd = arrLocalStorageProduct.find((curProd) => {
-        return curProd.id === id;
-
-    });
-
-    if (existingProd && quantity > 1) {
-        quantity = Number(existingProd.quantity) + Number(quantity);
-        // alert("Item Already Exist");
-        price = Number(price * quantity);
-        let updatedCart = { id, quantity, price };
-        updatedCart = arrLocalStorageProduct.map((curProd) => {
-            return (curProd.id === id) ? updatedCart : curProd;
-        });
-        console.log(updatedCart)
-        localStorage.setItem('cartProductLS', JSON.stringify(updatedCart));
-        //Show toast when product added to the cart
-        showToast("add",id);
-
-
-    }
-
-    if (existingProd) {
-        return false;
-    }
-
-    price = Number(price * quantity);
-    quantity = Number(quantity);
-
-    let UpdatedCart = { id, quantity, price };
-    arrLocalStorageProduct.push(UpdatedCart);
-
-    //Or we can write it like 
-    // arrLocalStorageProduct.push({id,quantity,price});
-
-    localStorage.setItem('cartProductLS', JSON.stringify(arrLocalStorageProduct));
-
-    
-
-
-    //Update Cart Button Value
+    // Update cart value in UI
     updateCartValue(arrLocalStorageProduct);
-    //Show toast whe product added to the cart
-    showToast("add",id);
+    return;
+  }
 
+  // Convert quantity & price to numbers
+  price = Number(price) * Number(quantity);
+  quantity = Number(quantity);
 
-}
+  // Add new product to the cart
+  arrLocalStorageProduct.push({ id, quantity, price });
+  localStorage.setItem("cartProductLS", JSON.stringify(arrLocalStorageProduct));
+
+  // Update cart UI
+  updateCartValue(arrLocalStorageProduct);
+
+  // Show toast notification
+  showToast("add", id);
+};

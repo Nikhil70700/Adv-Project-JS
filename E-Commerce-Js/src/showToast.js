@@ -6,6 +6,7 @@ export function showToast(operation,id){
 
     if(operation==="add"){
         toast.textContent="Added "+id+" to the list";
+       
     }else{
         toast.textContent="Removed "+id+" from the list";
     }

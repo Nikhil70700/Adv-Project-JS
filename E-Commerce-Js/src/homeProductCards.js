@@ -1,53 +1,78 @@
-import { addToCart } from "./addToCard";
+import { addToCart } from "./addToCard"; // Ensure this file name is correct.
 import { homeQuantityToggle } from "./homeQuantityToggle";
 
-const productContainer=document.querySelector("#productContainer");
+export const showProductContainer = (products) => {
+  // Query the container and template when the function is called.
+  const productContainer = document.querySelector("#productContainer");
+  const productTemplate = document.querySelector("#productTemplate");
 
-const productTemplate=document.querySelector("#productTemplate");
+  // Check if both elements exist.
+  if (!productContainer || !productTemplate) {
+    console.error("Missing #productContainer or #productTemplate in the DOM.");
+    return;
+  }
 
-export const showProductContainer=(products)=>{
-    if(!products){
-        return false;
+  if (!products) {
+    return false;
+  }
+
+  products.forEach((curProd) => {
+    const { id, name, category, brand, price, stock, description, image } = curProd;
+
+    // Clone the template content.
+    const productClone = document.importNode(productTemplate.content, true);
+
+    // Create a unique id for the toggle element (if it exists).
+    const cardValueElement = productClone.querySelector("#cardValue");
+    if (cardValueElement) {
+      cardValueElement.setAttribute("id", `card${id}`);
     }
 
+    // Populate the cloned template with product details.
+    const categoryEl = productClone.querySelector(".category");
+    if (categoryEl) categoryEl.textContent = category;
 
-    products.forEach((curProd)=>{
-        const{id , name , category , brand ,price,stock ,description,image}=curProd;
+    const nameEl = productClone.querySelector(".productName");
+    if (nameEl) nameEl.textContent = name;
 
-        
-        const productClone=document.importNode(productTemplate.content,true);
+    const imageEl = productClone.querySelector(".productImage");
+    if (imageEl) {
+      imageEl.src = image;
+      imageEl.alt = name;
+    }
 
+    const stockEl = productClone.querySelector(".productStock");
+    if (stockEl) stockEl.textContent = stock;
 
+    const descriptionEl = productClone.querySelector(".productDescription");
+    if (descriptionEl) descriptionEl.textContent = description;
 
-        //Creating Unique id for Button Toggle
+    const brandEl = productClone.querySelector(".productBrand");
+    if (brandEl) brandEl.textContent = brand;
 
-        productClone.querySelector('#cardValue').setAttribute('id',`card${id}`);
+    const priceEl = productClone.querySelector(".productPrice");
+    if (priceEl) priceEl.textContent = `₹${price}`;
 
+    const actualPriceEl = productClone.querySelector(".productActualPrice");
+    if (actualPriceEl) actualPriceEl.textContent = `₹${price * 4}`;
 
-        //Card Section
+    // Attach event listener for toggling stock/quantity.
+    const stockElement = productClone.querySelector(".stockElement");
+    if (stockElement) {
+      stockElement.addEventListener("click", (event) => {
+        homeQuantityToggle(event, id, stock);
+      });
+    }
 
-        productClone.querySelector(".category").textContent=category;
-        productClone.querySelector(".productName").textContent=name;
-        productClone.querySelector(".productImage").src=image;
-        productClone.querySelector(".productImage").alt=name;
-        productClone.querySelector(".productStock").textContent=stock;
-        productClone.querySelector(".productDescription").textContent=description;
-        productClone.querySelector(".productBrand").textContent=brand;
-        productClone.querySelector(".productPrice").textContent=`₹${price}`;
-        productClone.querySelector(".productActualPrice").textContent=`₹${price * 4}`;
+    // Attach event listener for "Add to Cart" button.
+    const addToCartButton = productClone.querySelector(".add-to-cart-button");
+    if (addToCartButton) {
+      addToCartButton.addEventListener("click", (event) => {
+        addToCart(event, id, stock);
+      });
+    }
 
-        
-
-        productClone.querySelector(".stockElement").addEventListener('click', (event)=>{
-            homeQuantityToggle(event,id,stock);
-        })
-
-        //Add to Cart
-
-        productClone.querySelector('.add-to-cart-button').addEventListener('click',(event)=>{
-            addToCart(event,id,stock);
-        });
-
-        productContainer.append(productClone );
-        });
-}
+    // Append the populated product card to the container.
+    productContainer.append(productClone);
+  });
+};

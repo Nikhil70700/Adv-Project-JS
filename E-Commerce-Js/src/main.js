@@ -1,13 +1,15 @@
 import "./style.css";
-import products from "../api/products.json"
+import products from "../api/products.json"; // Adjust the path as needed.
 import { showProductContainer } from "./homeProductCards";
 import { updateCartValue } from "./updateCartValue";
-document.addEventListener("DOMContentLoaded" , () =>{
 
-    //Calling a function named showProductContainer tha takes an array of products as an input.
-    showProductContainer(products);
+document.addEventListener("DOMContentLoaded", () => {
+  // Populate the product container with the products data.
+  showProductContainer(products);
 
-    const dataLength = (localStorage.getItem("cartProductLS") ? JSON.parse(localStorage.getItem("cartProductLS")).length : 0);
-
-    updateCartValue(dataLength);
-})
+  // Update the cart value from localStorage.
+  const cartProducts = localStorage.getItem("cartProductLS")
+    ? JSON.parse(localStorage.getItem("cartProductLS"))
+    : [];
+  updateCartValue(cartProducts.length);
+});

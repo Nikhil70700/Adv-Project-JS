@@ -15,8 +15,12 @@ export const updateCartProductTotal=()=>{
         let productPrice=parseInt(curElem.price) || 0;
         return  accum+productPrice;
     },initialValue);
-    // console.log(totalProductPrice);
+    let tax = 50; // Fixed tax
 
-    productSubTotal.textContent=`₹${totalProductPrice+50}`;
-    productFinalTotal.textContent=(`₹${totalProductPrice+50}`);
+    // Calculate final total
+    let finalTotal = totalProductPrice + tax;
+
+    // Update UI
+    productSubTotal.textContent = `₹${totalProductPrice}`;
+    productFinalTotal.textContent = `₹${finalTotal}`;
 };
