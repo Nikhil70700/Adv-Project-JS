@@ -563,7 +563,7 @@ body {
 }
 
 body {
-  padding-top: 80px; // Prevent content from hiding behind the fixed navbar
+  padding-top: 80px; 
 }
 
 /***** Responsive Styles *****/
@@ -752,6 +752,8 @@ main .section-hero {
     font-family: "Jost";
     background: linear-gradient(to right, #d0cfcf 0%, #e0e0e0 46%, #ffffff 50%, #f0f0f0 53%, #ededed 76%, #fbfbfb 87%, #eaeaea 100%);
     -webkit-background-clip: text;
+background-clip: text;
+
     -webkit-text-fill-color: transparent;
   }
 
@@ -1273,10 +1275,8 @@ footer {
   }
 }
 
-/* Default styling (you can override or add to Bootstrap defaults) */
-.navbar {
-  /* You can add any extra default styling here */
-}
+
+
 
 /* Responsive styling for small screens (max-width: 768px) */
 @media (max-width: 768px) {
